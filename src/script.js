@@ -1,7 +1,17 @@
 const puppeteer = require('puppeteer');
 
 async function scrapeNotice(){
-    const browser = await puppeteer.launch();
+    const chromeOptions = {
+        headless: true,
+        defaultViewport: null,
+        args: [
+            "--incognito",
+            "--no-sandbox",
+            "--single-process",
+            "--no-zygote"
+        ],
+    };
+    const browser = await puppeteer.launch(chromeOptions);
     const page = await browser.newPage();
     await page.goto('https://jgec.ac.in/allnotice.php');
 
