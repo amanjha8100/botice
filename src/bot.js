@@ -18,11 +18,6 @@ client.on('message', async (message) => {
     console.log(message.content);
     if(message.author.bot)
     return;
-    // if(message.content === '--notice')
-    // {
-    //     let x = s.notice;
-    //     console.log(x);
-    // }
     if(message.content.startsWith(PREFIX)){
         const [CMD_NAME, ...args] = message.content.trim().substring(PREFIX.length).split(" ");
         if(CMD_NAME == 'notice')
