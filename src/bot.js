@@ -28,7 +28,7 @@ client.on('message', async (message) => {
         if(CMD_NAME == 'notice')
         {
             let x = await s.notice;
-            message.channel.send(`Even Semester: \nNotice 1: \nTitle: ${x.rawTxt} \nLink: ${x.srcTxt} \nNotice 2: ${x.rawTxt1} \nLink: ${x.srcTxt1} \nOdd Semester: \nNotice 1: \nTitle: ${x.rawTxt2} \nLink: ${x.srcTxt2} \nNotice 2: \nTitle: ${x.rawTxt3} \nLink: ${x.srcTxt3}`);
+            message.channel.send(`Even Semester: \nTitle: ${x.rawTxt} \nLink: ${x.srcTxt} \nTitle: ${x.rawTxt1} \nLink: ${x.srcTxt1} \nOdd Semester: \nTitle: ${x.rawTxt2} \nLink: ${x.srcTxt2} \nTitle: ${x.rawTxt3} \nLink: ${x.srcTxt3}`);
         }
     }
 });
