@@ -5,17 +5,14 @@ async function scrapeNotice(){
     const page = await browser.newPage();
     await page.goto('https://jgec.ac.in/allnotice.php');
 
+
+    //Even Semester
     //1st Notice
 
     //Title
     const [el2] = await page.$x('/html/body/div[4]/p[1]');
     const txt = await el2.getProperty('textContent');
     const rawTxt = await txt.jsonValue();
-
-    //Date
-    const [el3] = await page.$x('/html/body/div[4]/text()[1]');
-    const txtD = await el3.getProperty('textContent');
-    const rawTxtDate = await txtD.jsonValue();
 
     //Link
     const [el] = await page.$x('/html/body/div[4]/p[2]/a');
@@ -29,22 +26,59 @@ async function scrapeNotice(){
     const txt1 = await el4.getProperty('textContent');
     const rawTxt1 = await txt1.jsonValue();
 
-    //Date
-    const [el5] = await page.$x('/html/body/div[4]/text()[2]');
-    const txtD1 = await el5.getProperty('textContent');
-    const rawTxtDate1 = await txtD1.jsonValue();
-
     //link
     const [el6] = await page.$x('/html/body/div[4]/p[5]/a');
     const src1 = await el6.getProperty('href');
     const srcTxt1 = await src1.jsonValue();
 
 
+    //Odd Semester
+    //Title
+    const [el3] = await page.$x('/html/body/div[3]/p[1]');
+    const txt2 = await el3.getProperty('textContent');
+    const rawTxt2 = await txt2.jsonValue();
+
+    //Link
+    const [el7] = await page.$x('/html/body/div[3]/p[2]/a');
+    const src2 = await el7.getProperty('href');
+    const srcTxt2 = await src2.jsonValue();
+
+    //Title
+    const [el8] = await page.$x('/html/body/div[3]/p[4]/text()');
+    const txt3 = await el8.getProperty('textContent');
+    const rawTxt3 = await txt3.jsonValue();
+
+    //Link
+    const [el9] = await page.$x('/html/body/div[3]/p[5]/a');
+    const src3 = await el9.getProperty('href');
+    const srcTxt3 = await src3.jsonValue();
 
 
-    console.log({rawTxt, rawTxtDate, srcTxt});
-    console.log({rawTxt1, rawTxtDate1, srcTxt1});
+    // console.log("Even Sem")
+    // console.log({rawTxt, srcTxt});
+    // console.log({rawTxt1, srcTxt1});
+    // console.log("ODD sem")
+    // console.log({rawTxt2, srcTxt2});
+    // console.log({rawTxt3, srcTxt3});
+
     browser.close();
+
+    return (
+        {
+            rawTxt,
+            srcTxt,
+            rawTxt1,
+            srcTxt1,
+            rawTxt2,
+            srcTxt2,
+            rawTxt3,
+            srcTxt3
+        }
+    );
+    
 }
 
-scrapeNotice();
+module.exports = {
+    notice:scrapeNotice()
+};
+// scrapeNotice();

@@ -1,8 +1,10 @@
 require('dotenv').config();
 
-const { Client } = require('discord.js')
+const { Client } = require('discord.js');
 const client = new Client();
 const PREFIX = "--";
+
+const s = require('./script.js');
 
 
 //events
@@ -12,13 +14,22 @@ client.on('ready' , () => {
     console.log(`${client.user.tag} Bot loggd in`);
 });
 
-client.on('message', (message) => {
+client.on('message', async (message) => {
     console.log(message.content);
     if(message.author.bot)
     return;
+    // if(message.content === '--notice')
+    // {
+    //     let x = s.notice;
+    //     console.log(x);
+    // }
     if(message.content.startsWith(PREFIX)){
-        // message.reply("hello there!");
-        const CMD_NAME = message.content.trim().substring(PREFIX.length).split(" ");
+        const [CMD_NAME, ...args] = message.content.trim().substring(PREFIX.length).split(" ");
+        if(CMD_NAME == 'notice')
+        {
+            let x = await s.notice;
+            message.channel.send(`Even Semester: \nNotice 1: \nTitle: ${x.rawTxt} \nLink: ${x.srcTxt} \nNotice 2: ${x.rawTxt1} \nLink: ${x.srcTxt1} \nOdd Semester: \nNotice 1: \nTitle: ${x.rawTxt2} \nLink: ${x.srcTxt2} \nNotice 2: \nTitle: ${x.rawTxt3} \nLink: ${x.srcTxt3}`);
+        }
     }
 });
 
